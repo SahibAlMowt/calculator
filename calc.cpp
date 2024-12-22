@@ -58,7 +58,7 @@ double sam::calculator(double a, double b, char c)
 
 double sam::proxodka(std::string str)
 {
-    str = removeSpaces(str);
+    str = sam::spaces(str);
     std::vector<double> num;
     std::vector<char> op;
 
@@ -247,7 +247,8 @@ void sam::print(const std::vector<double> &a)
     std::cout << "\n";
 }
 
-std::string removeSpaces(const std::string& input) {
+std::string sam::spaces(const std::string& input) 
+{
     std::string resultf = input;
     resultf.erase(std::remove(resultf.begin(), resultf.end(), ' '), resultf.end());
     return resultf;

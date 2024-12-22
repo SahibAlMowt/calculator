@@ -32,7 +32,9 @@ namespace sam
     double proxodka(std::string str);
     double str_to_int(std::string str);
     void print(const std::vector<double> &a);
+
+	std::string spaces(const std::string& input);
 }
-std::string removeSpaces(const std::string& input);
+
 
 #endif

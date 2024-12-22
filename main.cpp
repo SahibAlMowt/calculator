@@ -10,7 +10,7 @@ int main()
 
 		if (str.empty()) 
 		{
-   			 throw std::invalid_argument("input is empty");
+   			throw std::invalid_argument("input is empty");
 		}
 
 			
