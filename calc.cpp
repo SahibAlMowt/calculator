@@ -41,7 +41,8 @@ double sam::calculator(double a, double b, char c)
 {
     sam::Calculation s(a, b);
 
-    switch (c) {
+    switch (c) 
+    {
         case '+':
             return s.getres();
         case '-':
