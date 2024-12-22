@@ -4,18 +4,31 @@
 
 TEST_SUITE("'+' and '-'")
 {
-    TEST_CASE("Testing Calculator class") 
+    sam::Calculation calc(1, 1);
+
+    TEST_CASE("add")
     {
-        sam::Calculation calc(1, 1);
+        CHECK(calc.getres() == 2);
+    }
 
-        SUBCASE("Addition") 
-        {
-            CHECK(calc.getres() == 2);
-        }
-
-        SUBCASE("Subtraction") 
-        {
-            CHECK(calc.getdif() == 0);
-        }
+    TEST_CASE("dif")
+    {
+        CHECK(calc.getdif() == 0);
     }
 }
+
+TEST_SUITE("'/' and '*'")
+{
+    sam::Calculation calc(4, 1);
+
+    TEST_CASE("dev")
+    {
+        CHECK(calc.getdev() == 4);
+    }
+
+    TEST_CASE("mp")
+    {
+        CHECK(calc.getmp() == 4);
+    }
+}
+
