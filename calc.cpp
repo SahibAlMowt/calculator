@@ -98,16 +98,39 @@ double sam::proxodka(std::string str)
             }
             if (c == '+' || c == '-' || c == '*' || c == '/')
             {
-                if(d_op && (c != '-' || rem != '-'))
+                try
                 {
-                    std::cout << "c === " << c << " rem === " << rem << " d_op === " << d_op << "\n";
+                    if(d_op && (c != '-' || rem != '-'))
+                {
+                    if((rem == '*' || rem == '/' || rem == '+') && c == '-')
+                    {
+                        t += c;
+                        continue;
+                    }
                     throw std::invalid_argument("many operators here\n");
                 }
-                if(m)
-                {
-                    throw std::invalid_argument("many minus operators here\n");
                 }
+                catch(const std::invalid_argument &e)
+                {
+                    std::cerr << e.what() << '\n';
+                    return 0;
+                }
+                
+                try
+                {
+                    if(m)
+                    {
+                        throw std::invalid_argument("many minus operators here\n");
+                    }
+                }
+                catch(const std::invalid_argument &e)
+                {
+                    std::cerr << e.what() << "\n";
+                    return 0;
+                }
+
                 d_op = true;
+
                 op.push_back(c); 
                 if(c == '-' && rem == '-')
                 { 
@@ -120,14 +143,22 @@ double sam::proxodka(std::string str)
             }
             else if (c != ' ' && str != "quit") 
             {
-                throw std::invalid_argument(std::string("not working operator\t") + c);
+                try 
+                {
+                    throw std::invalid_argument(std::string("not working operator\t") + c);
+                }
+                catch(const std::invalid_argument &e)
+                {
+                    std::cerr << e.what() << "\n";
+                    return 0;
+                }
             }
 
         }
         rem = c;
     }
 
-
+    // - 2 2-
 
     if (!t.empty()) 
     {

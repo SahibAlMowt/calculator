@@ -8,6 +8,7 @@
 #include <iterator>
 #include <cmath>
 #include <algorithm>
+#include <stdexcept>
 
 namespace sam
 {
