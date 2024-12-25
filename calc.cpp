@@ -108,7 +108,7 @@ double sam::proxodka(std::string str)
             {
                 try
                 {
-                    int n = sam::str_to_int(t);
+                    double n = sam::str_to_int(t);
                     num.push_back(n); 
                     t.clear();
                 }
@@ -245,18 +245,10 @@ double sam::str_to_int(std::string str)
                 dot++;
             }
         }  
-        try 
+        if(dot > 1)
         {
-            if(dot > 1)
-            {
-                throw std::invalid_argument("are you writing Morse code?");
-            } 
-        }
-        catch(const std::invalid_argument &e)
-        {
-            std::cerr << e.what() << "\n";
-            return 0;
-        }
+            throw std::invalid_argument("are you writing Morse code?");
+        } 
     }
     
 
