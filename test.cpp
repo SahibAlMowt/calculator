@@ -8,7 +8,7 @@ TEST_SUITE("'+' and '-'")
 
     TEST_CASE("add")
     {
-        CHECK(calc.getres() == 2);
+        CHECK(calc.getsum() == 2);
     }
 
     TEST_CASE("dif")

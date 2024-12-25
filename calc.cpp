@@ -59,6 +59,19 @@ double sam::calculator(double a, double b, char c)
 
 double sam::proxodka(std::string str)
 {
+    try
+    {
+        if(str.back() == '-' || str.back() == '/' || str.back() == '*' || str.back() == '+')
+        {
+            throw std::invalid_argument("sentence ends with a period\n");
+        }
+    }
+    catch(const std::invalid_argument &e)
+    {
+        std::cerr << e.what() << '\n';
+        return 0;
+    }
+    
     str = sam::spaces(str);
     std::vector<double> num;
     std::vector<char> op;
@@ -93,8 +106,20 @@ double sam::proxodka(std::string str)
         {
             if(!t.empty()) 
             {
-                num.push_back(sam::str_to_int(t)); 
-                t.clear(); 
+                try
+                {
+                    int n = sam::str_to_int(t);
+                    num.push_back(n); 
+                    t.clear();
+                }
+                catch(const std::invalid_argument &e)
+                {
+                    std::cout << "-------------";
+                    std::cerr << e.what() << '\n';
+                    return 0;
+                }
+                
+                 
             }
             if (c == '+' || c == '-' || c == '*' || c == '/')
             {
@@ -205,7 +230,12 @@ double sam::proxodka(std::string str)
 }
 
 double sam::str_to_int(std::string str)
-{   
+{ 
+    if(str.back() == '.')
+    {
+        throw std::invalid_argument("it's not a sentence");
+    }  
+    
     {
         int dot = 0;
         for(char c: str)
