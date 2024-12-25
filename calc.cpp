@@ -10,7 +10,7 @@ sam::Calculation::Calculation(double m,  double n)
 	dev = a / b;
 }
 
-double sam::Calculation::getres() const
+double sam::Calculation::getsum() const
 {
 	return sum;
 }
@@ -27,14 +27,14 @@ double sam::Calculation::getmp() const
 
 double sam::Calculation::getdev() const
 {
-	if(b != 0)
-	{
-		return dev;
-	}
-	else
-	{
-		throw std::runtime_error("Division na zero! Don't do this again");
-	}
+    if(b != 0)
+    {
+        return dev;
+    }
+    else
+    {
+        throw std::runtime_error("division na zero! don't do this again\n");
+    }
 }
 
 double sam::calculator(double a, double b, char c)
@@ -44,7 +44,7 @@ double sam::calculator(double a, double b, char c)
     switch (c) 
     {
         case '+':
-            return s.getres();
+            return s.getsum();
         case '-':
             return s.getdif();
         case '*':
@@ -158,27 +158,32 @@ double sam::proxodka(std::string str)
         rem = c;
     }
 
-    // - 2 2-
-
     if (!t.empty()) 
     {
         num.push_back(sam::str_to_int(t));
     }
-    
-    //-------------------------------------------------------
 
     for (int i = 0; i < op.size(); i++) 
     {
-        if (op[i] == '*' || op[i] == '/') 
+        try
         {
-            double result = sam::calculator(num[i], num[i + 1], op[i]);
-            num[i] = result;
+            if (op[i] == '*' || op[i] == '/') 
+            {
+                double result = sam::calculator(num[i], num[i + 1], op[i]);
+                num[i] = result;
 
-            num.erase(num.begin() + i + 1);
-            op.erase(op.begin() + i);
+                num.erase(num.begin() + i + 1);
+                op.erase(op.begin() + i);
 
-            i--;
+                i--;
+            }
         }
+        catch(const std::exception &e)
+        {
+            std::cerr << e.what() << '\n';
+            return 0;
+        }
+        
     }
 
     for (int i = 0; i < op.size(); i++) 
@@ -194,6 +199,7 @@ double sam::proxodka(std::string str)
 
     double result = num[0];
 
+    std::cout << std::fixed << std::setprecision(2);
     std::cout << "result\t" << result << "\n";
     return result;
 }
@@ -209,10 +215,18 @@ double sam::str_to_int(std::string str)
                 dot++;
             }
         }  
-        if(dot > 1)
+        try 
         {
-            throw std::invalid_argument("are you writing Morse code?");
-        } 
+            if(dot > 1)
+            {
+                throw std::invalid_argument("are you writing Morse code?");
+            } 
+        }
+        catch(const std::invalid_argument &e)
+        {
+            std::cerr << e.what() << "\n";
+            return 0;
+        }
     }
     
 

@@ -9,6 +9,7 @@
 #include <cmath>
 #include <algorithm>
 #include <stdexcept>
+#include <iomanip>
 
 namespace sam
 {
@@ -23,7 +24,7 @@ namespace sam
 		double dev;		
 	public:
 		Calculation(double m, double n);
-		double getres() const;
+		double getsum() const;
 		double getdif() const;
 		double getmp() const;
 		double getdev() const;
