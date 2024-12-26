@@ -7,12 +7,13 @@ int main()
 	do
 	{
 		std::getline(std::cin, str);
-
+		
 		if (str.empty()) 
 		{
-   			throw std::invalid_argument("input is empty");
+			std::cerr << "input is empty\n";
+			continue;
 		}
-
+		
 			
 		sam::proxodka(str);
 		

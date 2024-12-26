@@ -114,7 +114,6 @@ double sam::proxodka(std::string str)
                 }
                 catch(const std::invalid_argument &e)
                 {
-                    std::cout << "-------------";
                     std::cerr << e.what() << '\n';
                     return 0;
                 }
@@ -185,7 +184,16 @@ double sam::proxodka(std::string str)
 
     if (!t.empty()) 
     {
-        num.push_back(sam::str_to_int(t));
+		try
+		{
+			num.push_back(sam::str_to_int(t));
+		}
+		catch(const std::invalid_argument &e)
+		{
+			std::cerr << e.what() << "\n";
+			return 0;
+		}
+        
     }
 
     for (int i = 0; i < op.size(); i++) 
