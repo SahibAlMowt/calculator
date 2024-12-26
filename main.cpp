@@ -3,6 +3,8 @@
 int main()
 {
     std::string str;
+
+	std::cout << "enter input without spaces\n";
 	
 	do
 	{
@@ -11,6 +13,12 @@ int main()
 		if (str.empty()) 
 		{
 			std::cerr << "input is empty\n";
+			continue;
+		}
+
+		if(sam::containsspaces(str, ' '))
+		{
+			std::cerr << "no spaces!\n";
 			continue;
 		}
 		

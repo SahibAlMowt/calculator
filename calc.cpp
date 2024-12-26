@@ -72,7 +72,6 @@ double sam::proxodka(std::string str)
         return 0;
     }
     
-    str = sam::spaces(str);
     std::vector<double> num;
     std::vector<char> op;
 
@@ -323,9 +322,15 @@ void sam::print(const std::vector<double> &a)
     std::cout << "\n";
 }
 
-std::string sam::spaces(const std::string& input) 
+bool sam::containsspaces(const std::string str, char c)
 {
-    std::string resultf = input;
-    resultf.erase(std::remove(resultf.begin(), resultf.end(), ' '), resultf.end());
-    return resultf;
+    for(char el: str)
+    {
+        if(el == c)
+        {
+            return true;
+        }
+    }
+
+    return false;
 }

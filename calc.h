@@ -35,7 +35,7 @@ namespace sam
     double str_to_int(std::string str);
     void print(const std::vector<double> &a);
 
-	std::string spaces(const std::string& input);
+	bool containsspaces(const std::string str, char c);
 }
 
 
